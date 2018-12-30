@@ -453,16 +453,16 @@ class ProfileTree(object):
 
 		for specifier, odict in self.profile_hier.items():
 			strout = str(specifier)
-			if strout.find(":funtoo/kits/python-kit/") != -1:
+			if strout.find(":liguros/kits/python-kit/") != -1:
 				# strip old python-kit settings
 				continue
 			outfile.write(strout + '\n')
 
 		# add new python-kit settings
 		for kit in self.config.all_kit_names_in_release:
-			python_path = os.path.join(config.kits_root, kit, "profiles/funtoo/kits/python-kit/", python_kit_branch)
+			python_path = os.path.join(config.kits_root, kit, "profiles/liguros/kits/python-kit/", python_kit_branch)
 			if os.path.exists(python_path):
-				outfile.write("%s:funtoo/kits/python-kit/" % kit + python_kit_branch + "\n")
+				outfile.write("%s:liguros/kits/python-kit/" % kit + python_kit_branch + "\n")
 
 	def remove_line(self, spec_str):
 		"""
