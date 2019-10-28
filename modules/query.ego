@@ -91,16 +91,18 @@ class Module(EgoModule):
 		atom is useless and will be ignored.
 		"""
 		repo_urls = {
-			'faustoo': 'https://github.com/fmoro/faustoo/tree/master/{cat}/{pkg}',
+			'gentoo-staging': 'https://gitlab.com/liguros/gentoo-staging/tree/master/{cat}/{pkg}',
+			#TODO add chaoslab
 			'fusion809': 'https://github.com/fusion809/fusion809-overlay/tree/master/{cat}/{pkg}',
-			'flora': 'https://code.funtoo.org/bitbucket/projects/CO/repos/flora/browse/{cat}/{pkg}',
-			'gentoo-staging': 'https://code.funtoo.org/bitbucket/projects/AUTO/repos/gentoo-staging/browse/{cat}/{pkg}',
-			'kit-fixups': 'https://code.funtoo.org/bitbucket/projects/CORE/repos/kit-fixups/browse/{kit}/{branch}/{cat}/{pkg}',
-			'rh1': 'https://github.com/x48rph/glassfish/tree/master/{cat}/{pkg}',
+			#TODO add plex
+			#TODO add go-overlay
+			#TODO add stefantalpalaru
+			#TODO add steam
+			'kit-fixups': 'https://gitlab.com/liguros/kit-fixups/tree/{branch}/{kit}/curated/{cat}/{pkg}',
 		}
 		gentoo_base_url = 'https://github.com/gentoo/gentoo/tree/master/{cat}/{pkg}'
 		atom = self.options.package
-		r = requests.get('http://ports.funtoo.org/packages.xml')
+		r = requests.get('https://gitlab.com/liguros/kit-fixups/-/jobs/artifacts/develop/raw/packages.xml?job=merge-all-kits')
 		try:
 			root = ElementTree.fromstring(r.text)
 			xpath = 'category'
@@ -141,7 +143,7 @@ class Module(EgoModule):
 						)
 					)
 		except ElementTree.ParseError as e:
-			Output.error("Unable to parse https://ports.funtoo.org/packages.xml.")
+			Output.error("Unable to parse packages.xml.")
 
 	def handle_bugs_subcommand(self):
 		"""Given a valid atom string, list related bugs on bugs.funtoo.org."""
