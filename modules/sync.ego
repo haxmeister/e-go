@@ -60,18 +60,18 @@ class Module(EgoModule):
 		parser.add_argument('--config-only', dest="config_only", action='store_true', help="Update /etc/portage/repos.conf files only.")
 
 	def show_release_notes(self):
-                import urllib.request, json
-                with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
-                        data = json.loads(url.read().decode("utf-8"))
-                        #print(json.dumps(data, indent=4))
-                        #print(type(data))
-                limit = 1 
-                for index, item in zip(range(limit), data):
-                    print("Release name:", item['name'])
-                    print("Tag:", item['tag_name'])
-                    print("Released:", item['released_at'])
-                    print("Release notes:\n", item['description'])
-                    print()
+		import urllib.request, json
+		with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
+			data = json.loads(url.read().decode("utf-8"))
+			#print(json.dumps(data, indent=4))
+			#print(type(data))
+		limit = 1
+		for index, item in zip(range(limit), data):
+			print("Release name:", item['name'])
+			print("Tag:", item['tag_name'])
+			print("Released:", item['released_at'])
+			print("Release notes:\n", item['description'])
+			print()
 
 	def sync_kit(self, kit_name, kit_root, branch, default_branch):
 		if branch is None:
@@ -338,7 +338,7 @@ priority = %s
 				Output.log(Color.green("Sync successful and kits in alignment! :)"))
 
                 # Show release notes
-                show_release_notes()
+		show_release_notes()
 
 		# If we are not writing to a special destination for archiving, we want to update our local repos.conf and profile settings automatically, as well
 		# as possibly run emerge --sync:
