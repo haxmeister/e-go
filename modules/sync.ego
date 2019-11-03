@@ -338,7 +338,7 @@ priority = %s
 				Output.log(Color.green("Sync successful and kits in alignment! :)"))
 
                 # Show release notes
-		show_release_notes()
+		self.show_release_notes()
 
 		# If we are not writing to a special destination for archiving, we want to update our local repos.conf and profile settings automatically, as well
 		# as possibly run emerge --sync:
