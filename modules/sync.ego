@@ -67,11 +67,13 @@ class Module(EgoModule):
 			#print(type(data))
 		limit = 1
 		for index, item in zip(range(limit), data):
-			print("Release name:", item['name'])
-			print("Tag:", item['tag_name'])
-			print("Released:", item['released_at'])
-			print("Release notes:\n", item['description'])
-			print()
+			print ("\n-------------------------------")
+			print("Release name: ", item['name'])
+			print("Tag:          ", item['tag_name'])
+			print("Released:     ", item['released_at'])
+			print("\nRelease notes:\n", item['description'])
+			print ("\n-------------------------------")
+
 
 	def sync_kit(self, kit_name, kit_root, branch, default_branch):
 		if branch is None:
