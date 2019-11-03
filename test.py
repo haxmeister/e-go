@@ -6,7 +6,8 @@ with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fi
     #print(json.dumps(data, indent=4))
     #print(type(data))
 
-for item in data:
+limit = 1
+for index, item in zip(range(limit), data):
     print("Release name:", item['name'])
     print("Tag:", item['tag_name'])
     print("Released:", item['released_at'])
