@@ -47,7 +47,7 @@ class Module(EgoModule):
 			print ("\n-------------------------------")
 
 	def handle(self):
-		handler = getattr(self.options, 'handler', self.noop)
+		handler = getattr(self.options, 'handler', self.handle_list_releases)
 		handler()
 
 # vim: ts=4 noet sw=4
