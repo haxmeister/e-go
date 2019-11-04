@@ -2,5 +2,5 @@
 	"description" : "Show LiGuros Release Notes",
 	"author" : "Pavol Cupka",
 	"version" : "1.0",
-	"actions" : [ "release" ]
+	"actions" : [ "release", "list" ]
 }

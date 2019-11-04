@@ -13,8 +13,10 @@ class Module(EgoModule):
 
 		get_parser = subparsers.add_parser('release', help="get last release notes")
 		get_parser.set_defaults(handler=self.handle_show_release)
+		get_parser = subparsers.add_parser('list', help="get last 10 release notes")
+		get_parser.set_defaults(handler=self.handle_list_releases)
 
-	def handle(self):
+	def handle_list_releases(self):
 		import urllib.request, json
 		with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
 			data = json.loads(url.read().decode("utf-8"))
