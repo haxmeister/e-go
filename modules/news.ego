@@ -3,6 +3,7 @@ import sys
 import urllib.request
 import json
 
+from datetime import datetime
 from ego.module import EgoModule
 
 class Module(EgoModule):
@@ -37,14 +38,30 @@ class Module(EgoModule):
 			data = json.loads(url.read().decode("utf-8"))
 			#print(json.dumps(data, indent=4))
 			#print(type(data))
+
 		limit = 1
 		for index, item in zip(range(limit), data):
-			print ("\n-------------------------------")
-			print("Release name: ", item['name'])
-			print("Tag:          ", item['tag_name'])
-			print("Released:     ", item['released_at'])
-			print("\nRelease notes:\n", item['description'])
-			print ("\n-------------------------------")
+			present_date = datetime.now()
+			release_date = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.000Z").date()
+			if present_date < release_date :
+				new_limit = 2
+				for index, item in zip(range(new_limit), data):
+					print ("\n-------------------------------")
+					print("Release name: ", item['name'])
+					print("Tag:          ", item['tag_name'])
+					print("Released:     ", item['released_at'])
+					print("\nRelease notes:\n", item['description'])
+					print ("\n-------------------------------")
+			else
+				new_limit = 1
+				for index, item in zip(range(new_limit), data):
+					print ("\n-------------------------------")
+					print("Release name: ", item['name'])
+					print("Tag:          ", item['tag_name'])
+					print("Released:     ", item['released_at'])
+					print("\nRelease notes:\n", item['description'])
+					print ("\n-------------------------------")
+
 
 	def handle(self):
 		handler = getattr(self.options, 'handler', self.handle_list_releases)
