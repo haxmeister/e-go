@@ -5,6 +5,7 @@ import json
 
 from datetime import datetime
 from ego.module import EgoModule
+from ego.output import Color, Output
 
 class Module(EgoModule):
 
@@ -25,12 +26,15 @@ class Module(EgoModule):
 			#print(type(data))
 		limit = 10
 		for index, item in zip(range(limit), data):
-			print ("\n-------------------------------")
-			print("Release name: ", item['name'])
-			print("Tag:          ", item['tag_name'])
-			print("Released:     ", item['released_at'])
-			print("\nRelease notes:\n", item['description'])
-			print ("\n-------------------------------")
+			released_at = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+			released_at_date = released_at.date()
+			released_at_time = released_at.time()
+			print ("\n------------------------------------")
+			print(Color.green("Release name: " + item['name']))
+			print(Color.blue("Tag:          " + item['tag_name']))
+			print(Color.cyan("Released:     " + item['released_at']))
+			print(Color.blue("\nRelease notes:\n" + item['description']))
+			print ("\n------------------------------------")
 
 	def handle_show_release(self):
 		import urllib.request, json
@@ -46,25 +50,32 @@ class Module(EgoModule):
 			if present_date < release_date :
 				new_limit = 2
 				for index, item in zip(range(new_limit), data):
-					if index == 1:
-						print ("\n-------------------------------")
-						print ("WARNING: Unreleased upcoming version")
+					released_at = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+					released_at_date = released_at.date()
+					released_at_time = released_at.time()
+					if index == 0:
+						Output.warning ("------------------------------------")
+						Output.warning ("Unreleased upcoming version")
+						Output.warning ("------------------------------------")
 					else:
-						print ("\n-------------------------------")
-					print("Release name: ", item['name'])
-					print("Tag:          ", item['tag_name'])
-					print("Released:     ", item['released_at'])
-					print("\nRelease notes:\n", item['description'])
-					print ("\n-------------------------------")
+						print ("\n------------------------------------")
+					print(Color.green("Release name: " + item['name']))
+					print(Color.blue("Tag:          " + item['tag_name']))
+					print(Color.cyan("Released:     " + item['released_at']))
+					print(Color.blue("\nRelease notes:\n" + item['description']))
+					print ("\n------------------------------------")
 			else:
 				new_limit = 1
 				for index, item in zip(range(new_limit), data):
-					print ("\n-------------------------------")
-					print("Release name: ", item['name'])
-					print("Tag:          ", item['tag_name'])
-					print("Released:     ", item['released_at'])
-					print("\nRelease notes:\n", item['description'])
-					print ("\n-------------------------------")
+					released_at = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+					released_at_date = released_at.date()
+					released_at_time = released_at.time()
+					print ("\n------------------------------------")
+					print(Color.green("Release name: " + item['name']))
+					print(Color.blue("Tag:          " + item['tag_name']))
+					print(Color.cyan("Released:     " + item['released_at']))
+					print(Color.blue("\nRelease notes:\n" + item['description']))
+					print ("\n------------------------------------")
 
 
 	def handle(self):
