@@ -46,7 +46,11 @@ class Module(EgoModule):
 			if present_date < release_date :
 				new_limit = 2
 				for index, item in zip(range(new_limit), data):
-					print ("\n-------------------------------")
+					if index == 1:
+						print ("\n-------------------------------")
+						print ("WARNING: Unreleased upcoming version")
+					else:
+						print ("\n-------------------------------")
 					print("Release name: ", item['name'])
 					print("Tag:          ", item['tag_name'])
 					print("Released:     ", item['released_at'])
