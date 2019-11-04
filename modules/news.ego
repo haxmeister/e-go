@@ -52,7 +52,7 @@ class Module(EgoModule):
 					print("Released:     ", item['released_at'])
 					print("\nRelease notes:\n", item['description'])
 					print ("\n-------------------------------")
-			else
+			else:
 				new_limit = 1
 				for index, item in zip(range(new_limit), data):
 					print ("\n-------------------------------")
