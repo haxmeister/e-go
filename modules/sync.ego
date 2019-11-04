@@ -41,7 +41,7 @@ class Module(EgoModule):
 				os.makedirs(os.path.dirname(root))
 			self._kits_root = root
 		return self._kits_root
-	
+
 	def _do_package_moves(self):
 		import portage
 		from portage._global_updates import _global_updates
@@ -52,28 +52,12 @@ class Module(EgoModule):
 			emerge_config.target_config.mtimedb.commit()
 		except portage.exception.ParseError as e:
 			Output.warning("Unable to perform package moves due to the following parse error: " + str(e))
-			
+
 	def add_arguments(self, parser):
 		parser.add_argument('--kits-only', action='store_true', help="Do not sync meta-repo, only kits.")
 		parser.add_argument('--meta-repo-only', dest="meta_only", action='store_true', help="Do not sync kits, only meta-repo.")
 		parser.add_argument('--dest', dest="dest", default=None, help="Manually specify destination of meta-repo")
 		parser.add_argument('--config-only', dest="config_only", action='store_true', help="Update /etc/portage/repos.conf files only.")
-
-	def show_release_notes(self):
-		import urllib.request, json
-		with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
-			data = json.loads(url.read().decode("utf-8"))
-			#print(json.dumps(data, indent=4))
-			#print(type(data))
-		limit = 1
-		for index, item in zip(range(limit), data):
-			print ("\n-------------------------------")
-			print("Release name: ", item['name'])
-			print("Tag:          ", item['tag_name'])
-			print("Released:     ", item['released_at'])
-			print("\nRelease notes:\n", item['description'])
-			print ("\n-------------------------------")
-
 
 	def sync_kit(self, kit_name, kit_root, branch, default_branch):
 		if branch is None:
@@ -225,10 +209,10 @@ priority = %s
 			finally:
 				if meta_repo_path.exists():
 					meta_repo_path.unlink()
-		
+
 		uid = None
 		gid = None
-		
+
 		if have_uid:
 			try:
 				pwnam = pwd.getpwnam(self.config.sync_user)
@@ -274,7 +258,7 @@ priority = %s
 				Output.log(Color.green("Syncing meta-repo"))
 				meta_repo_branch = self.config.meta_repo_branch
 				if repo.is_git_repo():
-				
+
 					repo.fetchRemote(meta_repo_branch, options=["--no-recurse-submodules"])
 					repo.checkout(meta_repo_branch)
 					repo.reset(options=["--hard"])
@@ -339,9 +323,6 @@ priority = %s
 			else:
 				Output.log(Color.green("Sync successful and kits in alignment! :)"))
 
-                # Show release notes
-		self.show_release_notes()
-
 		# If we are not writing to a special destination for archiving, we want to update our local repos.conf and profile settings automatically, as well
 		# as possibly run emerge --sync:
 
@@ -373,6 +354,8 @@ priority = %s
 				kb = "%s %s" % (kit, branch)
 				kb = kb.ljust(30)
 				Output.log(Color.darkcyan(kb) + Color.red(rating))
+
+		EgoModule.run_ego_module('news')
 
 		return True
 

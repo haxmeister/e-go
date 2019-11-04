@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+import urllib.request
+import json
+
+from ego.module import EgoModule
+
+class Module(EgoModule):
+
+	def handle(self):
+		import urllib.request, json
+		with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
+			data = json.loads(url.read().decode("utf-8"))
+			#print(json.dumps(data, indent=4))
+			#print(type(data))
+		limit = 10
+		for index, item in zip(range(limit), data):
+			print ("\n-------------------------------")
+			print("Release name: ", item['name'])
+			print("Tag:          ", item['tag_name'])
+			print("Released:     ", item['released_at'])
+			print("\nRelease notes:\n", item['description'])
+			print ("\n-------------------------------")
+
+	def show_release_notes(self):
+		import urllib.request, json
+		with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
+			data = json.loads(url.read().decode("utf-8"))
+			#print(json.dumps(data, indent=4))
+			#print(type(data))
+		limit = 1
+		for index, item in zip(range(limit), data):
+			print ("\n-------------------------------")
+			print("Release name: ", item['name'])
+			print("Tag:          ", item['tag_name'])
+			print("Released:     ", item['released_at'])
+			print("\nRelease notes:\n", item['description'])
+			print ("\n-------------------------------")
+
+
+# vim: ts=4 noet sw=4
