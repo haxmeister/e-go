@@ -2,84 +2,88 @@
 import sys
 import urllib.request
 import json
+import textwrap
 
 from datetime import datetime
 from ego.module import EgoModule
 from ego.output import Color, Output
 
+
 class Module(EgoModule):
 
-	def add_arguments(self, parser):
+    def add_arguments(self, parser):
 
-		subparsers = parser.add_subparsers(title='actions', dest='action')
+        subparsers = parser.add_subparsers(title='actions', dest='action')
 
-		get_parser = subparsers.add_parser('release', help="get last release notes")
-		get_parser.set_defaults(handler=self.handle_show_release)
-		get_parser = subparsers.add_parser('list', help="get last 10 release notes")
-		get_parser.set_defaults(handler=self.handle_list_releases)
+        get_parser = subparsers.add_parser('release', help="get last release notes")
+        get_parser.set_defaults(handler=self.handle_show_release)
+        get_parser = subparsers.add_parser('list', help="get last 10 release notes")
+        get_parser.set_defaults(handler=self.handle_list_releases)
 
-	def handle_list_releases(self):
-		import urllib.request, json
-		with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
-			data = json.loads(url.read().decode("utf-8"))
-			#print(json.dumps(data, indent=4))
-			#print(type(data))
-		limit = 10
-		for index, item in zip(range(limit), data):
-			released_at = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
-			released_at_date = released_at.date()
-			released_at_time = released_at.time()
-			print ("\n------------------------------------")
-			print(Color.green("Release name: " + item['name']))
-			print(Color.cyan("Tag:          " + item['tag_name']))
-			print(Color.cyan("Released:     " + item['released_at']))
-			print(Color.blue("\nRelease notes:\n" + item['description']))
-			print ("\n------------------------------------")
+    def handle_list_releases(self):
+        import urllib.request
+        import json
+        with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
+            data = json.loads(url.read().decode("utf-8"))
+            #print(json.dumps(data, indent=4))
+            # print(type(data))
+        limit = 10
+        for index, item in zip(range(limit), data):
+            present_date = datetime.now()
+            release_date = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+            print("\n------------------------------------")
+            print("=== " + Color.GREEN + item['name'] + Color.END + " ===")
+            print(Color.BOLD + "Tag:          " + Color.CYAN + item['tag_name'] + Color.END)
+            print(Color.BOLD + "Released:     " + Color.CYAN + item['released_at'] + Color.END)
+            if present_date < release_date:
+                Output.warning("Unreleased future release")
+            print(Color.green("\nRelease notes:\n"))
+            print(textwrap.indent(Color.BOLD + (item['description']), '  '))
+            print("\n------------------------------------")
 
-	def handle_show_release(self):
-		import urllib.request, json
-		with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
-			data = json.loads(url.read().decode("utf-8"))
-			#print(json.dumps(data, indent=4))
-			#print(type(data))
+    def handle_show_release(self):
+        import urllib.request
+        import json
+        with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
+            data = json.loads(url.read().decode("utf-8"))
+            #print(json.dumps(data, indent=4))
+            # print(type(data))
 
-		limit = 1
-		for index, item in zip(range(limit), data):
-			present_date = datetime.now()
-			release_date = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
-			if present_date < release_date :
-				new_limit = 2
-				for index, item in zip(range(new_limit), data):
-					released_at = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
-					released_at_date = released_at.date()
-					released_at_time = released_at.time()
-					if index == 0:
-						Output.warning ("------------------------------------")
-						Output.warning ("Unreleased upcoming version")
-						Output.warning ("------------------------------------")
-					else:
-						print ("\n------------------------------------")
-					print(Color.green("Release name: " + item['name']))
-					print(Color.cyan("Tag:          " + item['tag_name']))
-					print(Color.cyan("Released:     " + item['released_at']))
-					print(Color.blue("\nRelease notes:\n" + item['description']))
-					print ("\n------------------------------------")
-			else:
-				new_limit = 1
-				for index, item in zip(range(new_limit), data):
-					released_at = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
-					released_at_date = released_at.date()
-					released_at_time = released_at.time()
-					print ("\n------------------------------------")
-					print(Color.green("Release name: " + item['name']))
-					print(Color.cyan("Tag:          " + item['tag_name']))
-					print(Color.cyan("Released:     " + item['released_at']))
-					print(Color.blue("\nRelease notes:\n" + item['description']))
-					print ("\n------------------------------------")
+        limit = 1
+        for index, item in zip(range(limit), data):
+            present_date = datetime.now()
+            release_date = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+            if present_date < release_date:
+                new_limit = 2
+                for index, item in zip(range(new_limit), data):
+                    present_date = datetime.now()
+                    release_date = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+                    print("\n------------------------------------")
+                    print("=== " + Color.GREEN + item['name'] + Color.END + " ===")
+                    print(Color.BOLD + "Tag:          " + Color.CYAN + item['tag_name'] + Color.END)
+                    print(Color.BOLD + "Released:     " + Color.CYAN + item['released_at'] + Color.END)
+                    if present_date < release_date:
+                        Output.warning("Unreleased future release")
+                    print(Color.green("\nRelease notes:\n"))
+                    print(textwrap.indent(Color.BOLD + (item['description']), '  '))
+                    print("\n------------------------------------")
+            else:
+                new_limit = 1
+                for index, item in zip(range(new_limit), data):
+                    present_date = datetime.now()
+                    release_date = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
+                    print("\n------------------------------------")
+                    print("=== " + Color.GREEN + item['name'] + Color.END + " ===")
+                    print(Color.BOLD + "Tag:          " + Color.CYAN + item['tag_name'] + Color.END)
+                    print(Color.BOLD + "Released:     " + Color.CYAN + item['released_at'] + Color.END)
+                    if present_date < release_date:
+                        Output.warning("Unreleased future release")
+                    print(Color.green("\nRelease notes:\n"))
+                    print(textwrap.indent(Color.BOLD + (item['description']), '  '))
+                    print("\n------------------------------------")
 
-
-	def handle(self):
-		handler = getattr(self.options, 'handler', self.handle_list_releases)
-		handler()
+    def handle(self):
+        handler = getattr(self.options, 'handler', self.handle_list_releases)
+        handler()
 
 # vim: ts=4 noet sw=4
