@@ -46,5 +46,8 @@ class Module(EgoModule):
 			print("\nRelease notes:\n", item['description'])
 			print ("\n-------------------------------")
 
+	def handle(self):
+		handler = getattr(self.options, 'handler', self.noop)
+		handler()
 
 # vim: ts=4 noet sw=4
