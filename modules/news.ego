@@ -42,7 +42,7 @@ class Module(EgoModule):
 		limit = 1
 		for index, item in zip(range(limit), data):
 			present_date = datetime.now()
-			release_date = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.000Z").date()
+			release_date = datetime.strptime(item['released_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
 			if present_date < release_date :
 				new_limit = 2
 				for index, item in zip(range(new_limit), data):
