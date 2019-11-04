@@ -1,10 +1,18 @@
 #!/usr/bin/python3
+import sys
 import urllib.request
 import json
 
 from ego.module import EgoModule
 
 class Module(EgoModule):
+
+	def add_arguments(self, parser):
+
+		subparsers = parser.add_subparsers(title='actions', dest='action')
+
+		get_parser = subparsers.add_parser('release', help="get last release notes")
+		get_parser.set_defaults(handler=self.handle_show_release)
 
 	def handle(self):
 		import urllib.request, json
@@ -21,7 +29,7 @@ class Module(EgoModule):
 			print("\nRelease notes:\n", item['description'])
 			print ("\n-------------------------------")
 
-	def show_release_notes(self):
+	def handle_show_release(self):
 		import urllib.request, json
 		with urllib.request.urlopen("https://gitlab.com/api/v4/projects/liguros%2Fkit-fixups/releases") as url:
 			data = json.loads(url.read().decode("utf-8"))
