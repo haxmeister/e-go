@@ -7,7 +7,7 @@ prep() {
 	rm -f dist/ego-$VERSION*
 	cd doc
 	for x in *.rst; do
-	    cat $x | sed -e "s/##VERSION##/$VERSION/g" | rst2man.py > ${x%.rst}
+	    cat $x | sed -e "s/##VERSION##/$VERSION/g" | rst2man > ${x%.rst}
     done
 	cd ..
 	sed -i -e '/^VERSION =/s/^.*$/VERSION = "'$VERSION'"/g' ego
