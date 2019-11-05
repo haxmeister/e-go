@@ -3,13 +3,13 @@ ego config
 ==========
 
 ---------------------------------------------
-Funtoo Linux Configuration Module
+LiGurOS Linux Configuration Module
 ---------------------------------------------
 
 :Author: Daniel Robbins <drobbins@funtoo.org>
 :Version: ##VERSION##
 :Manual section: 1
-:Manual group: Funtoo Linux Core System
+:Manual group: LiGurOS Linux Core System
 
 SYNOPSIS
 ========

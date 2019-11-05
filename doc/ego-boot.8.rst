@@ -3,13 +3,13 @@ ego boot
 ========
 
 ---------------------------------------------
-Funtoo Linux Boot Loader Module
+LiGurOS Linux Boot Loader Module
 ---------------------------------------------
 
 :Author: Daniel Robbins <drobbins@funtoo.org>
 :Version: ##VERSION##
 :Manual section: 8
-:Manual group: Funtoo Linux Core System
+:Manual group: LiGurOS Linux Core System
 
 SYNOPSIS
 --------

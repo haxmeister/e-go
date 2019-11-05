@@ -1,8 +1,8 @@
 .\" Man page generated from reStructuredText.
 .
-.TH BOOT.CONF 5 "" "2.8.0" "Funtoo Linux Core System"
+.TH BOOT.CONF 5 "" "2.7.4.1" "LiGurOS Linux Core System"
 .SH NAME
-boot.conf \- Funtoo global boot loader configuration file
+boot.conf \- LiGurOS global boot loader configuration file
 .
 .nr rst2man-indent-level 0
 .
@@ -84,11 +84,11 @@ display {
         # type "boot\-update \-\-showdefaults" to see default settings.
 }
 
-"Funtoo Linux console" {
+"LiGurOS Linux console" {
         kernel bzImage
 }
 
-"Funtoo Linux with uvesafb" {
+"LiGurOS Linux with uvesafb" {
         kernel bzImage\-RHEL5\-uvesafb[\-v]
         params += video=uvesafb:1440x900\-8,mtrr:2
 }
@@ -127,8 +127,8 @@ Currently these are all \fIbuilt\-in\fP sections:
 \fIboot\fP, \fIcolor\fP, \fIdefault\fP, \fIgrub\fP, \fIgrub\-legacy\fP, \fIlilo\fP, \fIserial\fP
 .sp
 In addition, other sections can be created. Any sections with non\-builtin names
-are recognized as boot entry definitions. For example, the sections \fI"Funtoo
-Linux"\fP and \fI"Funtoo Linux genkernel"\fP define boot entries. Due to
+are recognized as boot entry definitions. For example, the sections \fI"LiGurOS
+Linux"\fP and \fI"LiGurOS Linux genkernel"\fP define boot entries. Due to
 \fI/etc/boot.conf\fP\(aqs wildcard support, a single boot entry section in the
 configuration file may generate multiple actual boot entries for the boot
 loader, depending on how many matches are found. Wildcard support will be
@@ -156,14 +156,14 @@ wildcards are used or multiple kernels are listed \-\- one boot entry will be
 generated for each matching kernel found.
 .sp
 So, for example, the following
-\fI/etc/boot.conf\fP could generate two boot entries named "Funtoo Linux \-
-bzImage" and "Funtoo Linux \- bzImage\-new":
+\fI/etc/boot.conf\fP could generate two boot entries named "LiGurOS Linux \-
+bzImage" and "LiGurOS Linux \- bzImage\-new":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-"Funtoo Linux" {
+"LiGurOS Linux" {
         kernel bzImage bzImage\-new
 }
 .ft P
@@ -179,7 +179,7 @@ the base name, plus a hypen and any additional text:
 .sp
 .nf
 .ft C
-"Funtoo Linux" {
+"LiGurOS Linux" {
         kernel bzImage[\-v]
 }
 .ft P
@@ -196,7 +196,7 @@ within brackets, which work similarly to \fI[\-v]\fP, above:
 .sp
 .nf
 .ft C
-"Funtoo Linux" {
+"LiGurOS Linux" {
         kernel bzImage[\-2.6*]
 }
 .ft P
@@ -217,7 +217,7 @@ this:
 .sp
 .nf
 .ft C
-"Funtoo Linux" {
+"LiGurOS Linux" {
         kernel bzImage
         initrd initramfs.igz
 }
@@ -235,7 +235,7 @@ the following boot entry:
 .sp
 .nf
 .ft C
-"Funtoo Linux" {
+"LiGurOS Linux" {
         kernel bzImage[\-v]
         initrd initramfs[\-v]
 }
@@ -266,7 +266,7 @@ since you can only load one kernel at boot. Here\(aqs an example:
 .sp
 .nf
 .ft C
-"Funtoo Linux" {
+"LiGurOS Linux" {
         kernel bzImage
         initrd initramfs\-1.igz initramfs\-2.igz
 }
@@ -287,7 +287,7 @@ a boot entry that is equivalent to the previous example:
 .sp
 .nf
 .ft C
-"Funtoo Linux" {
+"LiGurOS Linux" {
         kernel bzImage
         # load initramfs\-1.igz:
         initrd initramfs\-1.igz
@@ -306,7 +306,7 @@ And in the following example, the initial \fI+=\fP tells coreboot to append
 .sp
 .nf
 .ft C
-"Funtoo Linux" {
+"LiGurOS Linux" {
         kernel bzImage
         # load our default initramfs image(s), plus this one:
         initrd += initramfs\-1.igz
@@ -326,7 +326,7 @@ Matuschek that was posted on the funtoo\-dev mailing list:
 .sp
 .nf
 .ft C
-"Funtoo Linux On Ice" {
+"LiGurOS Linux On Ice" {
         params root=/dev/sda2
         params += rootfstype=jfs
         params += usbcore.autosuspend=1
@@ -562,14 +562,14 @@ the kernel image name:
 .nf
 .ft C
 boot {
-        default "Funtoo Linux"
+        default "LiGurOS Linux"
 }
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-If multiple "Funtoo Linux" boot entries are created, the one that has the most
+If multiple "LiGurOS Linux" boot entries are created, the one that has the most
 recently created kernel (by file modification time) will be booted by default.
 .sp
 Also note that if no \fBdefault\fP setting is specified, or no match is found,
@@ -688,7 +688,7 @@ supported for \fIgrub\fP, and defaults to being unset.
 .SS \fIdisplay :: font\fP
 .sp
 Specifies a font used to display text in graphical mode (ie. when \fBdisplay::gfxmode\fP is enabled) at boot. Defaults to
-\fBunifont.pf2\fP, which is included with Funtoo\(aqs \fIgrub\fP ebuild, or \fBunicode.pf2\fP, which is included in Gentoo\(aqs
+\fBunifont.pf2\fP, which is included with LiGurOS\(aqs \fIgrub\fP ebuild, or \fBunicode.pf2\fP, which is included in Gentoo\(aqs
 ebuild. If the font does not exist in \fB/boot/grub\fP or \fB/boot/grub/fonts\fP, it will be copied from \fB/usr/share/grub\fP
 or \fB/usr/share/grub/fonts\fP, if it exists. This option is only supported for \fIgrub\fP, and will only be enabled when a
 \fBgfxmode\fP has been specified.
@@ -706,11 +706,11 @@ Specifies the menu highlight colors in \fIfg/bg\fP format. Defaults to \fIblue/c
 \fBHINT\fP: a \fIblack\fP background will be transparent when a background image is
 specified.
 .sp
-Copyright 2015\-2018 Funtoo Solutions, Inc. and contributors.
+Copyright 2015\-2018 LiGurOS Solutions, Inc. and contributors.
 .sp
 This program is free software; you can redistribute and/or modify it under the terms of the GNU General Public License
 version 2 or GNU General Public License version 3. Alternatively you may (at your option) use any other license that has
-been publicly approved for use with this program by Funtoo Solutions, Inc. (or its successors, if any.)
+been publicly approved for use with this program by LiGurOS Solutions, Inc. (or its successors, if any.)
 .SH SEE ALSO
 .sp
 boot\-update(8), genkernel(8)

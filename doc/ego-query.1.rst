@@ -3,13 +3,13 @@ ego query
 =========
 
 ---------------------------------------------
-Funtoo Linux Ego Query Module
+LiGurOS Linux Ego Query Module
 ---------------------------------------------
 
 :Author: Antoine Pinsard <antoine.pinsard@gmail.com>
 :Version: ##VERSION##
 :Manual section: 1
-:Manual group: Funtoo Linux Core System
+:Manual group: LiGurOS Linux Core System
 
 SYNOPSIS
 ========
@@ -92,7 +92,7 @@ where fixes should be applied.::
          https://gitweb.gentoo.org/repo/gentoo.git/tree/app-vim/screen
 
 When the package is also available in Gentoo, the URL to the Gentoo repository is also shown in
-cyan as you may want to compare Funtoo version with Gentoo's.
+cyan as you may want to compare LiGurOS version with Gentoo's.
 
 
 QUERY BUGS

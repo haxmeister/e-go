@@ -3,13 +3,13 @@ ego kit
 =======
 
 ---------------------------------------------
-Funtoo Linux Kit Module
+LiGurOS Linux Kit Module
 ---------------------------------------------
 
 :Author: Daniel Robbins <drobbins@funtoo.org>
 :Version: ##VERSION##
 :Manual section: 1
-:Manual group: Funtoo Linux Core System
+:Manual group: LiGurOS Linux Core System
 
 SYNOPSIS
 ========
@@ -31,9 +31,9 @@ console displaying the location of meta-repo, the last time it was updated using
 branch selected for each kit, the default branch for the kit (if different than the current branch,) and the stability
 level of each branch.
 
-It's important to note that the stability level indicates the *true* stability of the branch; for example, Funtoo Linux
+It's important to note that the stability level indicates the *true* stability of the branch; for example, LiGurOS Linux
 developers may create a ``3.0-prime`` branch but immediately after its creation, it will be considered to have a
-``dev`` (not ``prime``) stability level. Only when the necessary fixes and patches have been applied will Funtoo Linux
+``dev`` (not ``prime``) stability level. Only when the necessary fixes and patches have been applied will LiGurOS Linux
 developers bump the branch to ``prime`` stability. So in this regard, the name of the branch indicates its eventual,
 intended stability level, while the stability level itself indicates the *actual* stability level of the branch.
 

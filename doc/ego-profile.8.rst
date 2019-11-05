@@ -3,18 +3,18 @@ ego profile
 ===========
 
 ---------------------------------------------
-Funtoo Linux Ego Profile Module
+LiGurOS Linux Ego Profile Module
 ---------------------------------------------
 
 :Author: Daniel Robbins <drobbins@funtoo.org>
 :Version: ##VERSION##
 :Manual section: 1
-:Manual group: Funtoo Linux Core System
+:Manual group: LiGurOS Linux Core System
 
 SYNOPSIS
 ========
 
-The ``ego profile`` or ``epro`` command is the official way to manage Funtoo Linux profiles.
+The ``ego profile`` or ``epro`` command is the official way to manage LiGurOS Linux profiles.
 
 ``ego profile [command]``
 
@@ -33,16 +33,16 @@ The ``ego profile`` or ``epro`` command is the official way to manage Funtoo Lin
 HISTORY
 =======
 
-Historically, users have had to add a large number of settings to ``/etc/make.conf`` to customize their Gentoo or Funtoo
+Historically, users have had to add a large number of settings to ``/etc/make.conf`` to customize their Gentoo or LiGurOS
 Linux system, which made setup of the operating system more difficult than it should be. In Gentoo Linux, it is possible
 to only define one system profile. Think of a system profile as the default settings that Portage uses for building
-everything on your system. Rather than a single profile, Funtoo Linux uses multiple sub-profiles, and moves many types
+everything on your system. Rather than a single profile, LiGurOS Linux uses multiple sub-profiles, and moves many types
 of settings that are normally stored in ``/etc/make.conf`` into the profile system.
 
 PROFILE TYPES
 =============
 
-The following profile types are available in Funtoo Linux:
+The following profile types are available in LiGurOS Linux:
 
 **arch**
   Typically x86-32bit or x86-64bit, this defines the processor type and support of your system. This is defined when
@@ -51,7 +51,7 @@ The following profile types are available in Funtoo Linux:
 **build**
   Defines whether your system is a current, stable or experimental build. current systems will have newer packages
   unmasked than stable systems. This is defined when your stage is built and is typically not changed. Note that
-  currently, only ``funtoo-current`` is being used.
+  currently, only ``liguros-current`` is being used.
 
 **subarch**
   Defines CPU optimizations for your system. The subarch is set at the time the stage3 is built, but can be changed
@@ -151,33 +151,33 @@ a file ``profiles/ego.profiles.desc`` which should include JSON similar to the f
 configuration if you like::
 
  {
-     "mix-ins" : "funtoo/1.0/linux-gnu/mix-ins",
-     "flavor" : "funtoo/1.0/linux-gnu/flavor",
-     "arch" : "funtoo/1.0/linux-gnu/arch",
-     "build" : "funtoo/1.0/linux-gnu/build"
+     "mix-ins" : "liguros/1.0/linux-gnu/mix-ins",
+     "flavor" : "liguros/1.0/linux-gnu/flavor",
+     "arch" : "liguros/1.0/linux-gnu/arch",
+     "build" : "liguros/1.0/linux-gnu/build"
  }
 
-This file defines locations for mix-ins, flavors, subarches and builds of Funtoo Linux in your overlay. Note that
+This file defines locations for mix-ins, flavors, subarches and builds of LiGurOS Linux in your overlay. Note that
 currently, it is not possible to define arches in your overlay, just subarches, but it is still necessary to define
 an "arch" path in the JSON as this is used as a starting point to find subarch profiles.
 
 Using the above config, you are now ready to create your own profile settings. You would then place your mix-ins in::
 
- <repo_path>/profiles/funtoo/1.0/linux-gnu/mix-ins/my_custom_mixin
+ <repo_path>/profiles/liguros/1.0/linux-gnu/mix-ins/my_custom_mixin
 
 Or you could place new flavors in::
 
- <repo_path>/profiles/funtoo/1.0/linux-gnu/flavor/my_new_flavor
+ <repo_path>/profiles/liguros/1.0/linux-gnu/flavor/my_new_flavor
 
 When adding subarches, you will want to use the following path format::
 
- <repo_path>/profiles/funtoo/1.0/linux-gnu/arch/<arch>/subarch/<subarch_profile_name>
+ <repo_path>/profiles/liguros/1.0/linux-gnu/arch/<arch>/subarch/<subarch_profile_name>
 
 For example, you might create this subarch for a new 64-bit AMD processor::
 
- <repo_path>/profiles/funtoo/1.0/linux-gnu/arch/x86-64bit/subarch/ryzen4000
+ <repo_path>/profiles/liguros/1.0/linux-gnu/arch/x86-64bit/subarch/ryzen4000
 
-If you prefer not to use the ``funtoo/1.0/linux-gnu`` prefix, you can adjust the ``profiles/ego.profiles.desc`` as
+If you prefer not to use the ``liguros/1.0/linux-gnu`` prefix, you can adjust the ``profiles/ego.profiles.desc`` as
 desired, and then you would modify the locations of your profiles accordingly.
 
 Remember, as long as you have an entry in ``/etc/portage/repos.conf/<repo_name>`` for your repository, ego will be able
@@ -189,7 +189,7 @@ in ``/etc/portage/repos.conf/``, as ``ego-``-prefixed repository files are manag
 ADDITIONAL DOCUMENTATION
 ========================
 
-Please see http://www.funtoo.org/Funtoo_Profiles (``edoc "Funtoo Profiles" | less``) for more detailed documentation,
-including a list of all flavors, mix-ins, detailed documentation on Funtoo Linux media mix-ins, how profile settings are
-stored in Funtoo Linux, as well as information about the history of the profile system, originally envisioned by Daniel
+Please see http://www.funtoo.org/LiGurOS_Profiles (``edoc "LiGurOS Profiles" | less``) for more detailed documentation,
+including a list of all flavors, mix-ins, detailed documentation on LiGurOS Linux media mix-ins, how profile settings are
+stored in LiGurOS Linux, as well as information about the history of the profile system, originally envisioned by Daniel
 Robbins and brought to life by Seemant Kulleen.

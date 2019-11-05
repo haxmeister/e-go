@@ -3,18 +3,18 @@ ego doc
 =========
 
 ---------------------------------------------
-Funtoo Linux Ego Documentation Module
+LiGurOS Linux Ego Documentation Module
 ---------------------------------------------
 
 :Author: Daniel Robbins <drobbins@funtoo.org>
 :Version: ##VERSION##
 :Manual section: 1
-:Manual group: Funtoo Linux Core System
+:Manual group: LiGurOS Linux Core System
 
 SYNOPSIS
 ========
 
-The ``ego doc`` or ``edoc`` command can be used to render Funtoo Linux wiki documentation for console viewing. To use
+The ``ego doc`` or ``edoc`` command can be used to render LiGurOS Linux wiki documentation for console viewing. To use
 this command, specify the name of the article as the first argument. It is recommended that you pipe the output of this
 command to ``less`` or another pager so that you can scroll through the output.
 
@@ -33,7 +33,7 @@ Here are some examples of use::
 
   edoc Install | less
   edoc Networking | less
-  edoc "Funtoo Linux First Steps" | less
+  edoc "LiGurOS Linux First Steps" | less
 
 BUGS
 ====

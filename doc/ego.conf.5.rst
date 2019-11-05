@@ -9,7 +9,7 @@ Ego global configuration file
 :Author: Daniel Robbins <drobbins@funtoo.org>
 :Version: ##VERSION##
 :Manual section: 5
-:Manual group: Funtoo Linux Core System
+:Manual group: LiGurOS Linux Core System
 
 SYNOPSIS
 --------
@@ -46,7 +46,7 @@ as-is. The default settings for *kits_path* is "kits".
 **kits_depth**
 
 This setting specifies the default depth to use when cloning a kit. The default is 2, which is the minimum functioning
-default when using Funtoo kits directly. If using a time-delayed version of meta-repo, this can be set to a custom
+default when using LiGurOS kits directly. If using a time-delayed version of meta-repo, this can be set to a custom
 value or set to 0, which will cause the kits to be cloned with complete history.
 
 Note that in ego 2.4.0 and greater, when git-depth data is detected in meta-repo, this depth data will be used instead,
@@ -81,8 +81,8 @@ meta-repo and kits and perform an initial ``ego sync`` to reinitialize the repos
 Kits Section
 ============
 
-The *kits* section is used to specify non-default branches to use for Funtoo Linux kits. By default, ``ego`` will use
-the *default* kit defined by Funtoo Linux BDFL. This information is stored in the ``metadata/kit-info.json`` in the
+The *kits* section is used to specify non-default branches to use for LiGurOS Linux kits. By default, ``ego`` will use
+the *default* kit defined by LiGurOS Linux BDFL. This information is stored in the ``metadata/kit-info.json`` in the
 meta-repo directory. Users who would prefer to use alternate branches can override these selections as follows::
 
   [kits]

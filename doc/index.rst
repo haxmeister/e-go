@@ -6,8 +6,8 @@
 Welcome to Ego's documentation!
 ===============================
 
-Ego - Funtoo's personality manager - is a utility that can manage multiple settings related to how
-Funtoo Linux uses Profiles and Kits, but also syncs portage repository tree (meta-repo) and other tasks.
+Ego - LiGurOS's personality manager - is a utility that can manage multiple settings related to how
+LiGurOS Linux uses Profiles and Kits, but also syncs portage repository tree (meta-repo) and other tasks.
 
 .. toctree::
    :maxdepth: 2

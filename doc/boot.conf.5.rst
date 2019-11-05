@@ -3,13 +3,13 @@ boot.conf
 =========
 
 ---------------------------------------------
-Funtoo global boot loader configuration file
+LiGurOS global boot loader configuration file
 ---------------------------------------------
 
 :Author: Daniel Robbins <drobbins@funtoo.org>
 :Version: ##VERSION##
 :Manual section: 5
-:Manual group: Funtoo Linux Core System
+:Manual group: LiGurOS Linux Core System
 
 SYNOPSIS
 --------
@@ -52,8 +52,8 @@ Currently these are all *built-in* sections:
 *boot*, *color*, *default*, *grub*, *grub-legacy*, *lilo*, *serial*
 
 In addition, other sections can be created. Any sections with non-builtin names
-are recognized as boot entry definitions. For example, the sections *"Funtoo
-Linux"* and *"Funtoo Linux genkernel"* define boot entries. Due to
+are recognized as boot entry definitions. For example, the sections *"LiGurOS
+Linux"* and *"LiGurOS Linux genkernel"* define boot entries. Due to
 */etc/boot.conf*'s wildcard support, a single boot entry section in the
 configuration file may generate multiple actual boot entries for the boot
 loader, depending on how many matches are found. Wildcard support will be
@@ -87,10 +87,10 @@ wildcards are used or multiple kernels are listed -- one boot entry will be
 generated for each matching kernel found.
 
 So, for example, the following
-*/etc/boot.conf* could generate two boot entries named "Funtoo Linux -
-bzImage" and "Funtoo Linux - bzImage-new"::
+*/etc/boot.conf* could generate two boot entries named "LiGurOS Linux -
+bzImage" and "LiGurOS Linux - bzImage-new"::
 
-        "Funtoo Linux" {
+        "LiGurOS Linux" {
                 kernel bzImage bzImage-new
         }
 
@@ -98,7 +98,7 @@ The *[-v]* wildcard, which can only appear once per filename, can be used at
 the end of a kernel image name to match the base name, or any combination of
 the base name, plus a hypen and any additional text::
 
-        "Funtoo Linux" {
+        "LiGurOS Linux" {
                 kernel bzImage[-v]
         }
 
@@ -107,7 +107,7 @@ Above, *bzImage[-v]* will match *bzImage* as well as *bzImage-**.
 In addition, *boot.conf* now supports the inclusion of arbitrary glob wildcards
 within brackets, which work similarly to *[-v]*, above::
 
-        "Funtoo Linux" {
+        "LiGurOS Linux" {
                 kernel bzImage[-2.6*]
         }
 
@@ -122,7 +122,7 @@ initrd/initramfs
 The *initrd* variable specifies one or more initrds or initramfs images, like
 this::
 
-        "Funtoo Linux" {
+        "LiGurOS Linux" {
                 kernel bzImage
                 initrd initramfs.igz
         }
@@ -132,7 +132,7 @@ matching pairs of kernels and initrds on disk that boot-update will associate
 with one another automatically by suffix. Here's how it works -- assume you have
 the following boot entry::
 
-        "Funtoo Linux" {
+        "LiGurOS Linux" {
                 kernel bzImage[-v]
                 initrd initramfs[-v]
         }
@@ -157,7 +157,7 @@ loaded in succession abt boot time. Note that this is different from the
 *kernel* option - where multiple matches will generate multiple boot entries,
 since you can only load one kernel at boot. Here's an example::
 
-        "Funtoo Linux" {
+        "LiGurOS Linux" {
                 kernel bzImage
                 initrd initramfs-1.igz initramfs-2.igz
         }
@@ -170,7 +170,7 @@ Note that the *+=* operator can be used to either extend the default initramfs
 setting or to specify multiple initramfs images over multiple lines. Here's
 a boot entry that is equivalent to the previous example::
 
-        "Funtoo Linux" {
+        "LiGurOS Linux" {
                 kernel bzImage
                 # load initramfs-1.igz:
                 initrd initramfs-1.igz
@@ -181,7 +181,7 @@ a boot entry that is equivalent to the previous example::
 And in the following example, the initial *+=* tells coreboot to append
 *initramfs-1.igz* to the default initramfs list::
 
-        "Funtoo Linux" {
+        "LiGurOS Linux" {
                 kernel bzImage
                 # load our default initramfs image(s), plus this one:
                 initrd += initramfs-1.igz
@@ -195,7 +195,7 @@ Typical kernel parameters, such as *init=/bin/bash*, *root=/dev/sda3* or others
 can be specified as necessary. Here's a sophisticated example from Andreas
 Matuschek that was posted on the funtoo-dev mailing list::
 
-        "Funtoo Linux On Ice" {
+        "LiGurOS Linux On Ice" {
                 params root=/dev/sda2
                 params += rootfstype=jfs
                 params += usbcore.autosuspend=1
@@ -311,7 +311,7 @@ For non-Linux operating systems, the *params* variable is used to specify the
 root partition for chain loading. For consistency with Linux boot entries, the
 syntax used is *root=device*.
 
-Users can manually set the chainloader option if they require a special value 
+Users can manually set the chainloader option if they require a special value
 other than the normal default set by boot.conf::
 
     "Windows 10" {
@@ -382,10 +382,10 @@ selected. To do this, specify the name of the boot entry rather than
 the kernel image name::
 
         boot {
-                default "Funtoo Linux"
+                default "LiGurOS Linux"
         }
 
-If multiple "Funtoo Linux" boot entries are created, the one that has the most
+If multiple "LiGurOS Linux" boot entries are created, the one that has the most
 recently created kernel (by file modification time) will be booted by default.
 
 Also note that if no ``default`` setting is specified, or no match is found,
@@ -515,7 +515,7 @@ supported for *grub*, and defaults to being unset.
 ~~~~~~~~~~~~~~~~~
 
 Specifies a font used to display text in graphical mode (ie. when ``display::gfxmode`` is enabled) at boot. Defaults to
-``unifont.pf2``, which is included with Funtoo's `grub` ebuild, or ``unicode.pf2``, which is included in Gentoo's
+``unifont.pf2``, which is included with LiGurOS's `grub` ebuild, or ``unicode.pf2``, which is included in Gentoo's
 ebuild. If the font does not exist in ``/boot/grub`` or ``/boot/grub/fonts``, it will be copied from ``/usr/share/grub``
 or ``/usr/share/grub/fonts``, if it exists. This option is only supported for *grub*, and will only be enabled when a
 ``gfxmode`` has been specified.

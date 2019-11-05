@@ -3,13 +3,13 @@ ego
 =========
 
 ---------------------------------------------
-Funtoo Linux System Management Meta-Command
+LiGurOS Linux System Management Meta-Command
 ---------------------------------------------
 
 :Author: Daniel Robbins <drobbins@funtoo.org>
 :Version: ##VERSION##
 :Manual section: 1
-:Manual group: Funtoo Linux Core System
+:Manual group: LiGurOS Linux Core System
 
 SYNOPSIS
 --------
@@ -36,7 +36,7 @@ config
   Ego configuration module to allow changing ``/etc/ego.conf`` from the command-line. See ego-config(8).
 
 You can invoke the relevant module by using the calling convention ``ego module [arg1...]``. For example, to view the
-Funtoo Linux Installation Guide, type ``ego doc Install | less``. Alternatively, you can use the module shortcut if
+LiGurOS Linux Installation Guide, type ``ego doc Install | less``. Alternatively, you can use the module shortcut if
 one exists, such as ``edoc install | less``.
 
 ENVIRONMENT VARIABLES
@@ -47,7 +47,7 @@ ENVIRONMENT VARIABLES
 
 ``ROOT``
   Use this environment variable to set an alternate path for the OS installation. This allows you to use your local
-  ego command to interact with a Funtoo system in a chroot, for example. Note that when this environment variable is
+  ego command to interact with a LiGurOS system in a chroot, for example. Note that when this environment variable is
   set, ego will not drop permissions to the Portage user.
 
 LICENSE
