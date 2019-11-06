@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
+from cmdtools import run
 from ego.module import EgoModule
+from ego.output import Color, Output
 
 class Module(EgoModule):
 
@@ -10,8 +12,18 @@ class Module(EgoModule):
 		#status_parser.set_defaults(handler=self.release_info)
 		#show_parser = subparsers.add_parser('show', help="Alias for the status command.")
 		#show_parser.set_defaults(handler=self.release_info)
-		list_parser = subparsers.add_parser('list', help="List all available upgrades.")
+		list_parser = subparsers.add_parser('list', help="List upgrades to core software: ego and portage.")
 		list_parser.set_defaults(handler=self.list_upgrades)
+		core_parser = subparsers.add_parser('core', help="Upgrade core software: ego and portage.")
+		core_parser.set_defaults(handler=self.core_upgrades)
+
+	def list_upgrades(self):
+		Output.log(Color.bold("Listing core tools updates..."))
+		run("/usr/bin/emerge -1pvquj portage ego", quiet=False)
+
+	def core_upgrades(self):
+		Output.log(Color.bold("Performing core tools updates..."))
+		run("/usr/bin/emerge -1quj portage ego", quiet=True)
 
 	def handle(self):
 		handler = getattr(self.options, 'handler', self.list_upgrades)

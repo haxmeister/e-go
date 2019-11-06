@@ -2,5 +2,5 @@
 	"description" : "Upgrade-related tools",
 	"author" : "Daniel Robbins",
 	"version" : "1.0",
-	"actions" : [ "status", "list", "show", "upgrade" ]
+	"actions" : [ "status", "list", "show", "upgrade", "core" ]
 }
