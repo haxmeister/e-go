@@ -19,10 +19,10 @@ class Module(EgoModule):
 
         subparsers = parser.add_subparsers(title='actions', dest='action')
 
-        get_parser = subparsers.add_parser('release', help="get last release notes")
-        get_parser.set_defaults(handler=self.handle_show_release)
-        get_parser = subparsers.add_parser('list', help="get last 10 release notes")
-        get_parser.set_defaults(handler=self.handle_list_releases)
+        release_parser = subparsers.add_parser('release', help="show latest release notes")
+        release_parser.set_defaults(handler=self.handle_show_release)
+        list_parser = subparsers.add_parser('list', help="get last 10 release notes")
+        list_parser.set_defaults(handler=self.handle_list_releases)
 
     def handle_list_releases(self):
         limit = 10
