@@ -355,7 +355,7 @@ priority = %s
 				kb = kb.ljust(30)
 				Output.log(Color.darkcyan(kb) + Color.red(rating))
 
-		EgoModule.run_ego_module('upgrade', self.config, ['core'])
+		EgoModule.run_ego_module('upgrade', self.config, ['list'])
 		EgoModule.run_ego_module('news', self.config, ['release'])
 
 		return True
