@@ -8,7 +8,7 @@ from ego.output import Output
 
 class GitHelper(object):
 
-	def __init__(self, module, root, quiet=False):
+	def __init__(self, module, root, quiet=True):
 		self.module = module
 		self.root = root
 		self.quiet = quiet
