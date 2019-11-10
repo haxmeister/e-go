@@ -343,7 +343,7 @@ priority = %s
 					foreign_repo = True
 					break
 			if foreign_repo:
-				Output.log(Color.bold("Updating non-funtoo repositories..."))
+				Output.log(Color.bold("Updating non-liguros repositories..."))
 				run("/usr/bin/emerge --sync --package-moves=n", quiet=True)
 			# do package moves and slotmoves...
 			self._do_package_moves()

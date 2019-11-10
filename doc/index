@@ -37,8 +37,8 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .
 .SH WELCOME TO EGO'S DOCUMENTATION!
 .sp
-Ego \- Funtoo\(aqs personality manager \- is a utility that can manage multiple settings related to how
-Funtoo Linux uses Profiles and Kits, but also syncs portage repository tree (meta\-repo) and other tasks.
+Ego \- LiGurOS\(aqs personality manager \- is a utility that can manage multiple settings related to how
+LiGurOS Linux uses Profiles and Kits, but also syncs portage repository tree (meta\-repo) and other tasks.
 .IP "System Message: ERROR/3 (<stdin>:, line 12)"
 Unknown directive type "toctree".
 .INDENT 0.0

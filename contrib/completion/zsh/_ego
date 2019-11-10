@@ -4,7 +4,7 @@
 # ZSH completion for ego(8)
 
 local portdir=$(python -c 'import portage;print(portage.settings["PORTDIR"])')
-local profile_dir="funtoo/1.0/linux-gnu"
+local profile_dir="liguros/1.0/linux-gnu"
 
 _ego-modulelist() {
   local -a modules

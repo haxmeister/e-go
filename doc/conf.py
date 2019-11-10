@@ -41,7 +41,7 @@ sys.path.insert(0, os.path.abspath('../python/third_party'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.get_extension.*') or your custom
 # ones.
-extensions = ['sphinx.get_extension.autodoc']
+extensions = ['sphinx.ext.todo', 'sphinx.ext.viewcode', 'sphinx.ext.autodoc']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
