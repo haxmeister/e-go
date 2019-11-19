@@ -27,7 +27,7 @@ func main() {
 	// create subcommand sync
 	syncCmd := flag.NewFlagSet("sync", flag.ExitOnError)
 	syncCmd.BoolVar(&scArgs.Sync.Help, "help", false, "display usage information")
-	syncCmd.BoolVar(&scArgs.Sync.Kits, "kits-only", false, "Do not sync meta-repo, only kits.")
+	//syncCmd.BoolVar(&scArgs.Sync.Kits, "kits-only", false, "Do not sync meta-repo, only kits.")
 
 	// create subcommand query
 	queryCmd := flag.NewFlagSet("query", flag.ExitOnError)

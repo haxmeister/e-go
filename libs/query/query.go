@@ -18,5 +18,5 @@ func Versions(option string) {
 	fmt.Println("querying versions of", option)
 }
 func Origin(option string) {
-	fmt.Println("querying versions of", option)
+	fmt.Println("querying origin of", option)
 }
