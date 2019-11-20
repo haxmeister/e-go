@@ -8,9 +8,10 @@ import (
 	"gitlab.com/liguros/ego/libs/query"
 )
 
-type CommandArgs struct {
+type commandArgs struct {
 	Sync struct {
 		Help bool
+		Kits bool
 	}
 	Query struct {
 		Versions string
@@ -22,7 +23,7 @@ func main() {
 
 	// create an instance of the struct called scArgs that will be a pointer to it
 	// this syntax creates a pointer.. very handy
-	scArgs := &CommandArgs{}
+	scArgs := &commandArgs{}
 
 	// create subcommand sync
 	syncCmd := flag.NewFlagSet("sync", flag.ExitOnError)
