@@ -6,12 +6,15 @@ import (
 	"os"
 
 	"gitlab.com/liguros/ego/libs/query"
+	"gitlab.com/liguros/ego/libs/sync"
 )
 
 type commandArgs struct {
 	Sync struct {
 		Help bool
 		Kits bool
+		Meta bool
+		Dest string
 	}
 	Query struct {
 		Versions string
@@ -25,12 +28,14 @@ func main() {
 	// this syntax creates a pointer.. very handy
 	scArgs := &commandArgs{}
 
-	// create subcommand sync
+	// create subcommand sync and args
 	syncCmd := flag.NewFlagSet("sync", flag.ExitOnError)
 	syncCmd.BoolVar(&scArgs.Sync.Help, "help", false, "display usage information")
-	//syncCmd.BoolVar(&scArgs.Sync.Kits, "kits-only", false, "Do not sync meta-repo, only kits.")
+	syncCmd.BoolVar(&scArgs.Sync.Kits, "kits-only", false, "Do not sync meta-repo, only kits.")
+	syncCmd.BoolVar(&scArgs.Sync.Meta, "meta-repo-only", false, "Do not sync kits, only meta repo")
+	syncCmd.StringVar(&scArgs.Sync.Dest, "dest", "", "manually specify new location to create a meta-repo")
 
-	// create subcommand query
+	// create subcommand query and args
 	queryCmd := flag.NewFlagSet("query", flag.ExitOnError)
 	queryCmd.StringVar(&scArgs.Query.Origin, "origin", "", "origin")
 	queryCmd.StringVar(&scArgs.Query.Versions, "versions", "", "versions")
@@ -52,8 +57,10 @@ func main() {
 		if scArgs.Sync.Help == true {
 			syncCmd.PrintDefaults()
 			//fmt.Println("Usage for ego sync")
-		} else {
-			sync()
+		} else if scArgs.Sync.Meta {
+			sync.Meta()
+		} else if scArgs.Sync.Kits {
+			sync.Kits()
 		}
 
 	case "query":
@@ -79,11 +86,6 @@ func main() {
 		boot()
 	}
 
-}
-
-// Sync document comment
-func sync() {
-	fmt.Println("Syncing")
 }
 
 // Profile document comment
