@@ -26,13 +26,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// load module
-	// 1. open the so file to load the symbols
-	plug, err := plugin.Open(mod)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	plug, err := loadMod(mod)
 
 	// 2. look up a symbol (an exported function or variable)
 	// in this case, variable Syncer
@@ -54,4 +48,15 @@ func main() {
 	// 4. use the module
 	syncer.Sync()
 
+}
+
+// load module
+func loadMod(mod string) (*plugin.Plugin, error) {
+	// 1. open the so file to load the symbols
+	plug, err := plugin.Open(mod)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+	return plug, nil
 }
