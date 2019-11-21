@@ -13,7 +13,7 @@ type Syncer interface {
 
 func main() {
 	// determine plugin to load
-	subcmd := "sync"
+	subcmd := "help"
 	if len(os.Args) == 2 {
 		subcmd = os.Args[1]
 	}
