@@ -20,7 +20,7 @@ func main() {
 	var mod string
 	switch subcmd {
 	case "sync":
-		mod = "./sync/sync.so"
+		mod = "/usr/share/ego/plugins/sync.so"
 	default:
 		fmt.Println("don't know that subcommand")
 		os.Exit(1)
