@@ -54,7 +54,7 @@ compile:
     stage: build
     script:
       - go build -buildmode=plugin -o plugins/sync.so sync/plugin.go
-      - go build -race -ldflags "-extldflags '-static'" -o $CI_PROJECT_DIR/e-go
+      - go build -o $CI_PROJECT_DIR/e-go
     artifacts:
       paths:
         - e-go
